@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: my-nginx
+  annotations:
+    traefik.ingress.kubernetes.io/affinity: "true"
+spec:
+  rules:
+  - host: lxh.nginx.demo
+    http:
+      paths:
+      - path: "/"
+        backend:
+          serviceName: my-nginx
+          servicePort: 80

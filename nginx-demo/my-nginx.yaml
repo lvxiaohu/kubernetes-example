@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-nginx
+spec:
+  selector:
+    matchLabels:
+      run: my-nginx
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: my-nginx
+    spec:
+      imagePullSecrets:
+       - name: nginx-registry-fit2cloud-com-key
+      containers:
+      - name: my-nginx
+        image: registry.kubeapps.fit2cloud.com/nginx/nginx:demo
+        #image: registry.kubeapps.fit2cloud.com/nginx/nginx:latest
+        ports:
+        - containerPort: 80
